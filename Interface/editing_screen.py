@@ -22,6 +22,9 @@ class editing_screen(QtWidgets.QWidget):
         self.qtoolbar = QtWidgets.QDateEdit()
         self.edit_sc_success_label = QtWidgets.QLabel()
         self.edit_sc_warn_label = QtWidgets.QLabel()
+        self.edit_sc_warn_label2 = QtWidgets.QLabel()
+        self.edit_sc_warn_label2.setText("Enter only numeric values")
+        self.edit_sc_warn_label2.setStyleSheet("background-color:red")
         self.edit_sc_success_label.setText("Asset added successfully..")
         self.edit_sc_warn_label.setText("Please fill all fields..")
         self.edit_sc_warn_label.setStyleSheet("background-color:red")
@@ -56,6 +59,8 @@ class editing_screen(QtWidgets.QWidget):
 
         edit_sc_vbox.addWidget(self.edit_sc_warn_label)
         self.edit_sc_warn_label.hide()
+        edit_sc_vbox.addWidget(self.edit_sc_warn_label2)
+        self.edit_sc_warn_label2.hide()
         edit_sc_vbox.addWidget(self.edit_sc_success_label)
         self.edit_sc_success_label.hide()
         edit_sc_vbox.addLayout(edit_sc_hbox)
@@ -84,8 +89,23 @@ class editing_screen(QtWidgets.QWidget):
         self.show_sc.show()
         self.hide()
     def edit_button_is_clicked(self):
-        self.database.update_data(self.table_name_data,(self.qtoolbar.text(),self.qline_edit2.text(),self.qline_edit3.text(),self.id_num+1))
-        self.show_sc1 = show_screen.ShowScreen(self.table_name_data)
-        self.show_sc1.show()
-        self.hide()
+
+        if self.qtoolbar.text() == "":
+            self.edit_sc_warn_label.show()
+        elif self.qline_edit2.text() == "":
+            self.edit_sc_warn_label.show()
+        elif self.qline_edit3.text() == "":
+            self.edit_sc_warn_label.show()
+
+        elif self.qline_edit2.text().isnumeric() == False:
+            self.edit_sc_warn_label2.show()
+            self.edit_sc_warn_label.hide()
+        elif self.qline_edit3.text().isnumeric() == False:
+            self.edit_sc_warn_label2.show()
+            self.edit_sc_warn_label.hide()
+        else:
+            self.database.update_data(self.table_name_data,(self.qtoolbar.text(),self.qline_edit2.text(),self.qline_edit3.text(),self.id_num+1))
+            self.show_sc1 = show_screen.ShowScreen(self.table_name_data)
+            self.show_sc1.show()
+            self.hide()
 
