@@ -18,8 +18,8 @@ class initial_screen(QtWidgets.QWidget):
 
     def init_ui(self):
 
-        self.edit_button = QtWidgets.QPushButton("Düzenle(Ekle/Çıkar)")
-        self.show_button = QtWidgets.QPushButton("Portföyümü Göster")
+        self.edit_button = QtWidgets.QPushButton("Add")
+        self.show_button = QtWidgets.QPushButton("Show Portfolio")
         self.welcome_label = QtWidgets.QLabel()
         self.welcome_label.setText("Welcome to the Portfolio Manager v0.0.1")
 

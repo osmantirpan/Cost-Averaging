@@ -20,9 +20,9 @@ class TransitionScreen(QtWidgets.QWidget):
         trans_sc_hbox = QtWidgets.QHBoxLayout()
         trans_sc_hbox2 = QtWidgets.QHBoxLayout()
 
-        self.select_button = QtWidgets.QPushButton("Göster")
-        self.delete_button = QtWidgets.QPushButton("Sil")
-        self.back_button = QtWidgets.QPushButton("Geri")
+        self.select_button = QtWidgets.QPushButton("Show")
+        self.delete_button = QtWidgets.QPushButton("Delete")
+        self.back_button = QtWidgets.QPushButton("Back")
         trans_sc_vbox.addWidget(self.list_widget)
         trans_sc_hbox.addStretch()
         trans_sc_hbox.addWidget(self.select_button)

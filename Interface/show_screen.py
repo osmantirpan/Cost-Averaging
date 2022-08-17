@@ -16,17 +16,17 @@ class ShowScreen(QtWidgets.QWidget):
         database_ = database.Database()
         data = database_.get_data(self.current_table)
 
-        self.show_sc_back_button = QtWidgets.QPushButton("Geri")
-        self.edit_button = QtWidgets.QPushButton("Düzenle")
+        self.show_sc_back_button = QtWidgets.QPushButton("Back")
+        self.edit_button = QtWidgets.QPushButton("Edit")
         self.tableWidget = QtWidgets.QTableWidget()
         self.breakeven_label = QtWidgets.QLabel()
         self.breakeven_num_label = QtWidgets.QLabel()
         self.total_cost_label = QtWidgets.QLabel()
         self.total_cost_num_label = QtWidgets.QLabel()
         self.desc_label3 = QtWidgets.QLabel()
-        self.breakeven_label.setText("Başabaş noktası:")
+        self.breakeven_label.setText("Break-even point:")
         self.breakeven_num_label.setText(str(database_.averager(self.current_table)))
-        self.total_cost_label.setText("Toplam maliyet:")
+        self.total_cost_label.setText("Total cost:")
         self.total_cost_label.setFont(QtGui.QFont("",15))
         self.breakeven_label.setFont(QtGui.QFont("", 15))
         self.total_cost_num_label.setText(str(database_.quantity_retriever(self.current_table)))
@@ -48,7 +48,7 @@ class ShowScreen(QtWidgets.QWidget):
 
 
 
-        self.tableWidget.setHorizontalHeaderLabels(["TARİH", "FİYAT", "ALIM MİKTARI"])
+        self.tableWidget.setHorizontalHeaderLabels(["DATE", "PRICE", "QUANTITY"])
         self.tableWidget.setColumnWidth(0,200)
         self.tableWidget.setColumnWidth(1, 121)
         self.tableWidget.setColumnWidth(2, 121)
