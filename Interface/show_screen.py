@@ -43,13 +43,10 @@ class ShowScreen(QtWidgets.QWidget):
 
         for i in range(0,self.tableWidget_Row_count):
             for j in range(0,self.tableWidget_column_count):
-                if j == 0:
-                    self.tableWidget.setItem(i, j, QtWidgets.QTableWidgetItem(data[i][j]))
-                    self.tableWidget.item(i,j).setFont(QtGui.QFont("",19))
+                    self.tableWidget.setItem(i, j, QtWidgets.QTableWidgetItem(data[i][j+1]))
+                    self.tableWidget.item(i,j).setFont(QtGui.QFont("Arial",19))
 
-                else:
-                    self.tableWidget.setItem(i, j, QtWidgets.QTableWidgetItem(data[i][j]))
-                    self.tableWidget.item(i,j).setFont(QtGui.QFont("",19))
+
 
         self.tableWidget.setHorizontalHeaderLabels(["TARİH", "FİYAT", "ALIM MİKTARI"])
         self.tableWidget.setColumnWidth(0,200)
@@ -80,6 +77,7 @@ class ShowScreen(QtWidgets.QWidget):
 
     def edit_button_is_clicked(self):
         self.editing_sc = editing_screen.editing_screen(self.tableWidget.currentItem().row(),self.current_table)
+        print(self.tableWidget.currentItem().row())
         self.editing_sc.init_ui()
         self.editing_sc.show()
 

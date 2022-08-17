@@ -4,9 +4,9 @@ from Interface import edit_screen
 from Interface import show_screen
 class editing_screen(QtWidgets.QWidget):
 
-    def __init__(self,new_data,table_name_data):
+    def __init__(self,id_num,table_name_data):
         super().__init__()
-        self.new_data = new_data
+        self.id_num = id_num
         self.table_name_data = table_name_data
 
 
@@ -15,7 +15,7 @@ class editing_screen(QtWidgets.QWidget):
         self.setGeometry(100, 100, 500, 500)
 
         self.database = database.Database()
-        data = self.database.get_data_by_id()
+        data = self.database.get_data(self.table_name_data)
         print(data)
         self.edit_sc_back_button = QtWidgets.QPushButton("Geri")
         self.edit_sc_inital_sc_button = QtWidgets.QPushButton("Ana Menü")
@@ -38,7 +38,7 @@ class editing_screen(QtWidgets.QWidget):
         self.qline_edit2_label2.setText("Ürünü alış fiyatınızı giriniz..")
         self.qline_edit3_label3.setText("Alım adetinizi giriniz..")
         self.qline_edit1_clear_button = QtWidgets.QPushButton("Temizle")
-        self.qline_edit1_add_button = QtWidgets.QPushButton("Ekle")
+        self.edit_button = QtWidgets.QPushButton("Düzenle")
 
         edit_sc_vbox.addWidget(self.qline_edit1_label1)
         edit_sc_vbox.addWidget(self.qtoolbar)
@@ -61,7 +61,7 @@ class editing_screen(QtWidgets.QWidget):
         edit_sc_vbox.addLayout(edit_sc_hbox)
         edit_sc_vbox.addStretch()
 
-        edit_sc_hbox.addWidget(self.qline_edit1_add_button)
+        edit_sc_hbox.addWidget(self.edit_button)
         edit_sc_hbox.addWidget(self.qline_edit1_clear_button)
 
         edit_sc_hbox2.addWidget(self.edit_sc_back_button)
@@ -75,8 +75,17 @@ class editing_screen(QtWidgets.QWidget):
 
         self.setLayout(edit_sc_vbox)
         self.edit_sc_back_button.clicked.connect(self.back_button_is_clicked)
+        self.edit_button.clicked.connect(self.edit_button_is_clicked)
+
+
 
     def back_button_is_clicked(self):
         self.show_sc = show_screen.ShowScreen(self.table_name_data)
         self.show_sc.show()
         self.hide()
+    def edit_button_is_clicked(self):
+        self.database.update_data(self.table_name_data,(self.qtoolbar.text(),self.qline_edit2.text(),self.qline_edit3.text(),self.id_num+1))
+        self.show_sc1 = show_screen.ShowScreen(self.table_name_data)
+        self.show_sc1.show()
+        self.hide()
+

@@ -8,10 +8,10 @@ class Database:
 
 
         def new_table(self,urun):
-            self.cursor.execute("CREATE TABLE IF NOT EXISTS {} (Tarih TEXT,Fiyat TEXT,Miktar TEXT)".format(urun.upper()))
+            self.cursor.execute("CREATE TABLE IF NOT EXISTS {} (id INTEGER PRIMARY KEY,Tarih TEXT,Fiyat TEXT,Miktar TEXT)".format(urun.upper()))
             self.connection.commit()
         def add_data(self,table_name,tarih,fiyat,miktar):
-            self.cursor.execute("Insert into {} Values(?,?,?)".format(table_name),(tarih,fiyat,miktar))
+            self.cursor.execute("Insert into {} (Tarih,Fiyat,Miktar)  Values(?,?,?)".format(table_name),(tarih,fiyat,miktar))
             self.connection.commit()
         def add_table_name(self,table_name):
             table_names = self.get_data("tableListExecutionInfo01")
@@ -24,7 +24,14 @@ class Database:
             else:
                 self.cursor.execute("Insert into tableListExecutionInfo01 Values(?)", (str(table_name).upper(),))
                 self.connection.commit()
-
+        def update_data(self,table,task):
+            sql = ''' UPDATE {}
+              SET Tarih = ? ,
+                  Fiyat = ? ,
+                  Miktar = ?
+              WHERE id = ?'''.format(table)
+            self.cursor.execute(sql,task)
+            self.connection.commit()
 
 
         def get_data(self,table):
@@ -74,9 +81,6 @@ class Database:
                     total += float(i[0]) * float(j[0])
                 return total
 
-
-       # def replacer(self,table,old_value,date_data,price_data,quantity_data):
-            #self.cursor.execute("REPLACE INTO {table} ({old_Value}) VALUES(?,?,?)".format(table=table,old_Value=old_Value),(date_data,price_data,quantity_data))
 
 
 
