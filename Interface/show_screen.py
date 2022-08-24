@@ -77,7 +77,6 @@ class ShowScreen(QtWidgets.QWidget):
 
     def edit_button_is_clicked(self):
         self.editing_sc = editing_screen.editing_screen(self.tableWidget.currentItem().row(),self.current_table)
-        print(self.tableWidget.currentItem().row())
         self.editing_sc.init_ui()
         self.editing_sc.show()
 

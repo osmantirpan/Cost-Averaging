@@ -82,8 +82,6 @@ class editing_screen(QtWidgets.QWidget):
         self.edit_sc_back_button.clicked.connect(self.back_button_is_clicked)
         self.edit_button.clicked.connect(self.edit_button_is_clicked)
 
-
-
     def back_button_is_clicked(self):
         self.show_sc = show_screen.ShowScreen(self.table_name_data)
         self.show_sc.show()

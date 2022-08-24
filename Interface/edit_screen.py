@@ -14,7 +14,7 @@ class edit_screen(QtWidgets.QWidget):
         self.trans_screen = transition_screen.TransitionScreen()
         self.setGeometry(100, 100, 500, 500)
         self.database_ = database.Database()
-        self.edit_sc_back_button = QtWidgets.QPushButton("Geri")
+        self.edit_sc_back_button = QtWidgets.QPushButton("Back")
         edit_sc_vbox = QtWidgets.QVBoxLayout()
         edit_sc_hbox = QtWidgets.QHBoxLayout()
         edit_sc_hbox2 = QtWidgets.QHBoxLayout()

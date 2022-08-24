@@ -39,9 +39,12 @@ class Database:
             data_ = self.cursor.fetchall()
             return data_
 
-        def get_data_by_id(self):
-            self.cursor.execute("SELECT * FROM 'MANA' WHERE 'id' = 1")
+        def get_data_by_id(self,table_name,id):
+            self.cursor.execute("SELECT * FROM {} WHERE id = {}".format(table_name,str(id+1)))
             self.connection.commit()
+            data = self.cursor.fetchall()
+            return data
+
 
         def rows_count(self,table_name):
             query = "SELECT COUNT(*) FROM {}".format(table_name)
